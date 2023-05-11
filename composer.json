@@ -1,0 +1,17 @@
+{
+  "name": "php/online",
+  "type": "online",
+  "autoload": {
+    "psr-4": {
+      "Online\\HomeWork\\": "inc/php"
+    }
+  },
+  "authors": [
+    {
+      "name": "alexl",
+      "email": "glazoknet@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {}
+}
