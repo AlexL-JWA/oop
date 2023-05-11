@@ -3,34 +3,59 @@
 namespace Online\HomeWork;
 
 class FishingRod {
-	private $reel;
-	private $line;
-	private $bait;
+
+	private $elements;
 
 	public function __construct( Reel $reel, Line $line, Bait $bait ) {
-		$this->reel = $reel;
-		$this->line = $line;
-		$this->bait = $bait;
-	}
 
-	public function check() {
-		$results   = [];
-		$results[] = $this->reel->checkState();
-		$results[] = $this->line->checkState();
-		$results[] = $this->bait->checkState();
-
-		return $results;
+		$this->elements = [
+			'reel' => $reel,
+			'line' => $line,
+			'bait' => $bait,
+		];
 	}
 
 	public function cast() {
-		if ( $this->line->checkState() === 'Леска не запуталась' && $this->bait->checkState() === 'Наживка на месте' ) {
-			$this->line->tangle();
-			$this->bait->eat();
 
-			return 'Удочка успешно закинута';
-		} else {
-			return 'Не удалось закинуть удочку';
+		$check = $this->check();
+
+		if ( empty( $check ) ) {
+			return true;
 		}
+
+		foreach ( $check as $key => $value ) {
+			switch ( $key ) {
+				case 'reel':
+					if ( ! $value ) {
+						echo 'Леска запуталась';
+					}
+					break;
+				case 'line':
+					if ( ! $value ) {
+						echo 'Катушка сломана';
+					}
+					break;
+				case 'bait':
+					if ( ! $value ) {
+						echo 'Наживка съедена';
+					}
+					break;
+			}
+		}
+
+		return false;
+	}
+
+	public function check() {
+		$results = [];
+
+		foreach ( $this->elements as $key => $element ) {
+			if ( ! $element->checkState() ) {
+				$results[ $key ] = $element->checkState();
+			}
+		}
+
+		return $results;
 	}
 
 	public function retrieve() {

@@ -2,14 +2,14 @@
 
 namespace Online\HomeWork;
 
-class Line {
-	private $isTangled = false;
-
-	public function checkState() {
-		return $this->isTangled ? 'Леска запуталась' : 'Леска не запуталась';
+class Line extends Elements {
+	public function __construct() {
+		if ( $this->error() ) {
+			$this->tangle();
+		}
 	}
 
 	public function tangle() {
-		$this->isTangled = true;
+		$this->isBroken = false;
 	}
 }

@@ -13,4 +13,7 @@ $bait = new Bait();
 
 $fishman = new Fisherman();
 $fishman->assembleRod( $real, $line, $bait );
-var_dump( $fishman->castRod() );
+
+$fishman->castRod();
+
+$fishman->retrieveRod();

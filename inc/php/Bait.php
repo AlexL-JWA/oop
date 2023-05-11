@@ -2,14 +2,14 @@
 
 namespace Online\HomeWork;
 
-class Bait {
-	private $isEaten = false;
-
-	public function checkState() {
-		return $this->isEaten ? 'Наживка съедена' : 'Наживка на месте';
+class Bait extends Elements {
+	public function __construct() {
+		if ( $this->error() ) {
+			$this->eat();
+		}
 	}
 
 	public function eat() {
-		$this->isEaten = true;
+		$this->isBroken = false;
 	}
 }

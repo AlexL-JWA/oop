@@ -2,14 +2,14 @@
 
 namespace Online\HomeWork;
 
-class Reel {
-	private $isBroken = false;
-
-	public function checkState() {
-		return $this->isBroken ? 'Катушка сломана' : 'Катушка в порядке';
+class Reel extends Elements {
+	public function __construct() {
+		if ( $this->error() ) {
+			$this->break();
+		}
 	}
 
 	public function break() {
-		$this->isBroken = true;
+		$this->isBroken = false;
 	}
 }
